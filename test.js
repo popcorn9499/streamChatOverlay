@@ -95,7 +95,15 @@ async function test(){
   }
 }
 
-addListNode();
+async function main(){
+  for (i = 0; i < 25; i++) { 
+    var message = "BNLAHHH" + i;
+    addListNode("WHY","User",message);
+    await sleep(1000);
+  }
+}
+main()
+
 test()
 
 
