@@ -67,8 +67,20 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function fadeOut(object){
+  var fadeTime=5000; //time in ms
+  var curOpacity = window.getComputedStyle(object).getPropertyValue("opacity");
+  console.log("Opacity " + curOpacity);
+
+  while (object.style.opacity >= 0){
+    curOpacity-=0.001
+    object.style.opacity = curOpacity;
+    await sleep(16);
+  }
 
 }
+
+
 async function addListNode(time,username,message){
   var ul = document.getElementById("Chat");
   var li = document.createElement("li");
@@ -82,6 +94,7 @@ async function addListNode(time,username,message){
   ul.appendChild(li);
   console.log("Added")
   await sleep(5000);
+  await fadeOut(li);
   ul.removeChild(li)
   console.log("Removed")
 }
