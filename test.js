@@ -1,4 +1,7 @@
+var messageDisapearDelay=15000; //time in ms
 
+var fadeTransitionTime = 1000; //time in ms
+var fadeCycleTime = 16; //time in ms per "frame"
 
 
 var WS_URL = "ws://localhost:8000";
@@ -54,12 +57,8 @@ function sleep(ms) { //sleep function
 // }
 
 async function fadeOut(object){
-  var fadeTime = 1000; //time in ms
-  var fadeCycleTime = 16; //time in ms per "frame"
-
-
   var curOpacity = window.getComputedStyle(object).getPropertyValue("opacity");
-  var opacityChange = curOpacity/(fadeTime/fadeCycleTime);
+  var opacityChange = curOpacity/(fadeTransitionTime/fadeCycleTime);
   console.log("Fade out");
 
   while (object.style.opacity >= 0){
@@ -67,7 +66,6 @@ async function fadeOut(object){
     object.style.opacity = curOpacity;
     await sleep(fadeCycleTime);
   }
-
 }
 
 
@@ -83,7 +81,7 @@ async function addListNode(time,username,message){
   li.innerHTML = html;
   ul.appendChild(li);
   console.log("Added")
-  await sleep(5000);
+  await sleep(messageDisapearDelay);
   await fadeOut(li);
   ul.removeChild(li)
   console.log("Removed")
