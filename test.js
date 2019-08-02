@@ -85,11 +85,18 @@ async function addListNode(username,message){
   var li = document.createElement("li");
   var time = formatAMPM(new Date());
   li.className = "message";
-  var html = `
-    <span class="timestamp"> ${time} </span>
-    <span class="username"> ${username} </span>
-    <span class="message-text"> ${message} </span>
-  `;
+
+  var timeAMPMMsg = `<span class="timestamp"> ${time} </span>`
+  var AuthorMsg = `<span class="username"> ${username} </span>`
+  var msg = `<span class="message-text"> ${message} </span>`
+
+  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Author%": AuthorMsg, "%Message%":msg}
+  var html = messageFormat;
+  for (var key in formatDictionary) {
+    console.log(formatDictionary[key])
+    html = html.replace(key,formatDictionary[key]);
+  }
+
   li.innerHTML = html;
   ul.appendChild(li);
   console.log("Added")
