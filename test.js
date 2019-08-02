@@ -68,14 +68,18 @@ function sleep(ms) {
 }
 
 async function fadeOut(object){
-  var fadeTime=5000; //time in ms
+  var fadeTime = 1000; //time in ms
+  var fadeCycleTime = 16; //time in ms per "frame"
+
+
   var curOpacity = window.getComputedStyle(object).getPropertyValue("opacity");
-  console.log("Opacity " + curOpacity);
+  var opacityChange = curOpacity/(fadeTime/fadeCycleTime);
+  console.log("Fade out");
 
   while (object.style.opacity >= 0){
-    curOpacity-=0.001
+    curOpacity-=opacityChange
     object.style.opacity = curOpacity;
-    await sleep(16);
+    await sleep(fadeCycleTime);
   }
 
 }
