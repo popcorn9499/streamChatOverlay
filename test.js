@@ -95,6 +95,7 @@ async function addListNode(username,message){
   console.log("Added")
   await sleep(messageDisapearDelay);
   await fadeOut(li);
+  await sleep(100);
   ul.removeChild(li)
   console.log("Removed")
 }
