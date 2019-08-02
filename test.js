@@ -1,71 +1,57 @@
-// let socket = new WebSocket("wss://localhost:8000");
-
-// socket.onopen = function(e) {
-//   alert("[open] Connection established, send -> server");
-//   socket.send("My name is John");
-// };
-
-// socket.onmessage = function(event) {
-//   alert(`[message] Data received: ${event.data} <- server`);
-// };
-
-// socket.onclose = function(event) {
-//   if (event.wasClean) {
-//     alert(`[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`);
-//   } else {
-//     // e.g. server process killed or network down
-//     // event.code is usually 1006 in this case
-//     alert('[close] Connection died');
-//   }
-// };
-
-// socket.onerror = function(error) {
-//   alert(`[error] ${error.message}`);
-// };
 
 
-// var WS_URL = "ws://localhost:8000";
-//       function connect() {
-//         console.log("attempting connection");
 
-//         var ws = new WebSocket(WS_URL);
-//         ws.onopen = function() {
-//           console.log("connection open");
-//           ws.send("hello");
-//         };
+var WS_URL = "ws://localhost:8000";
+function connect() {
+  console.log("attempting connection");
 
-//         ws.onmessage = function(event) {
-//           console.log("received:");
-//           console.log(event.data);
-//               };
+  var ws = new WebSocket(WS_URL);
+  ws.onopen = function() {
+    console.log("connection open");
+    ws.send("hello");
+  };
 
-//         ws.onclose = function(e) {
-//           console.log(
-//             "Socket is closed. Reconnect will be attempted in 1 second.",
-//             e.reason
-//           );
-//           setTimeout(function() {
-//             connect();
-//           }, 500);
-//         };
+  ws.onmessage = function(event) {
+    console.log("received:");
+    console.log(event.data);
+        };
 
-//         ws.onerror = function(err) {
-//           console.error(
-//             "Socket encountered error: ",
-//             err.message,
-//             "Closing socket"
-//           );
-//           ws.close();
-//         };
-//       }
+  ws.onclose = function(e) {
+    console.log(
+      "Socket is closed. Reconnect will be attempted in 1 second.",
+      e.reason
+    );
+    setTimeout(function() {
+      connect();
+    }, 500);
+  };
 
-//       // start websocket
-//       connect();
+  ws.onerror = function(err) {
+    console.error(
+      "Socket encountered error: ",
+      err.message,
+      "Closing socket"
+    );
+    ws.close();
+  };
+}
+
+// start websocket
+connect();
 
 
 function sleep(ms) { //sleep function
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+// async function fadein(object){
+//   var fadeTime=2000; //time in ms
+//   var curOpacity = object.style.opacity;
+
+//   for (i = 0; i <; ){
+
+//   }
+// }
 
 async function fadeOut(object){
   var fadeTime = 1000; //time in ms
