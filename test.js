@@ -103,13 +103,6 @@ async function addListNode(time,username,message){
   console.log("Removed")
 }
 
-async function test(){
-  while (true){
-    console.log("HI");
-    await sleep(2000);
-  }
-}
-
 async function main(){
   for (i = 0; i < 25; i++) { 
     var message = "BNLAHHH" + i;
@@ -119,6 +112,5 @@ async function main(){
 }
 main()
 
-test()
 
 
