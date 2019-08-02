@@ -63,7 +63,7 @@
 //       connect();
 
 
-function sleep(ms) {
+function sleep(ms) { //sleep function
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
