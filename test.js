@@ -68,13 +68,11 @@ function sleep(ms) {
 }
 
 
-async function addListNode(){
+}
+async function addListNode(time,username,message){
   var ul = document.getElementById("Chat");
   var li = document.createElement("li");
   li.className = "message";
-  var time = "Time";
-  var username = "Username";
-  var message = "Message";
   var html = `
     <span class="timestamp"> ${time} </span>
     <span class="username"> ${username} </span>
