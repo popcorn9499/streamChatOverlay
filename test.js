@@ -19,7 +19,7 @@ function connect() {
     console.log("received:");
     console.log(event.data);
     data = JSON.parse(event.data); //this section will change this is temporary setup
-    newMessage(data["Author"], data["Message"], ServiceIcon="[D]")
+    newMessage(data["Author"], data["Message"], ServiceIcon=data["ServerIcon"],Server=data["Server"],Channel=data["Channel"])
   };
 
   ws.onclose = function(e) {
