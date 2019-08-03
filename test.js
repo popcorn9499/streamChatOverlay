@@ -18,7 +18,8 @@ function connect() {
   ws.onmessage = function(event) {
     console.log("received:");
     console.log(event.data);
-
+    data = JSON.parse(event.data); //this section will change this is temporary setup
+    newMessage(data["Author"], data["Message"])
   };
 
   ws.onclose = function(e) {
