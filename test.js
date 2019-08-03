@@ -1,6 +1,6 @@
-var messageDisapearDelay=15000; //time in ms
+var messageDisapearDelay=5000; //time in ms
 
-var fadeTransitionTime = 1000; //time in ms
+var fadeTransitionTime = 1000; //time in ms (set to 0 to disable)
 var fadeCycleTime = 16; //time in ms per "frame"
 
 var messageFormat = "%TimeAMPM% %Author% %Message%"
@@ -18,7 +18,7 @@ function connect() {
   ws.onmessage = function(event) {
     console.log("received:");
     console.log(event.data);
-    
+
   };
 
   ws.onclose = function(e) {
@@ -93,12 +93,11 @@ async function fadeOut(object){ //adds a fadeout to the text
 
 async function newMessage(username,message){
   var ul = document.getElementById("Chat");
-  var li = document.createElement("li");
+  
   var timeAMPM = formatAMPM(new Date());
-  var time = formatTime(new Date());
+  var time = formatTime(new Date()); 
 
-  li.className = "message";
-
+  //fill in the formatting spaces we have
   var timeAMPMMsg = `<span class="timestamp"> ${timeAMPM} </span>`
   var times = `<span class="timestamp"> ${time} </span>`
   var AuthorMsg = `<span class="username"> ${username} </span>`
@@ -111,11 +110,13 @@ async function newMessage(username,message){
     html = html.replace(key,formatDictionary[key]);
   }
 
+  var li = document.createElement("li");
+  li.className = "message";
   li.innerHTML = html;
   ul.appendChild(li);
   console.log("Added")
-  await sleep(messageDisapearDelay);
-  if (fadeTransitionTime != 0){
+  await sleep(messageDisapearDelay); //delay in between message on screen and fadeout and removal
+  if (fadeTransitionTime != 0){ //fade out section with 0 diabling it
     await fadeOut(li);
     await sleep(100);
   }
@@ -123,7 +124,7 @@ async function newMessage(username,message){
   console.log("Removed")
 }
 
-async function main(){
+async function main(){ //temp code that will be gone when we add the websocket
   for (i = 0; i < 7; i++) { 
     var message = "BNLAHHH aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + i;
     newMessage("User",message);
