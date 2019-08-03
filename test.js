@@ -92,7 +92,7 @@ async function fadeOut(object){ //adds a fadeout to the text
 }
 
 
-async function newMessage(username,message, ServiceIcon=""){
+async function newMessage(username,message, ServiceIcon="",Server=""){
   var ul = document.getElementById("Chat");
   
   var timeAMPM = formatAMPM(new Date());
@@ -101,16 +101,17 @@ async function newMessage(username,message, ServiceIcon=""){
   console.log(ServiceIcon)
 
   //fill in the formatting spaces we have
-  var timeAMPMMsg = `<span class="timestamp"> ${timeAMPM} </span>`
-  var times = `<span class="timestamp"> ${time} </span>`
-  var ServiceIconMsg = `<span class="ServiceIcon"> ${ServiceIcon} </span>`
-  var AuthorMsg = `<span class="username"> ${username} </span>`
-  var msg = `<span class="message-text"> ${message} </span>`
+  var timeAMPMMsg = `<span class="timestamp"> ${timeAMPM} </span>`;
+  var times = `<span class="timestamp"> ${time} </span>`;
+  var ServiceIconMsg = `<span class="ServiceIcon"> ${ServiceIcon} </span>`;
+  var ServerMsg = `<span class="Server"> ${Server} </span>`;
+  var AuthorMsg = `<span class="username"> ${username} </span>`;
+  var msg = `<span class="message-text"> ${message} </span>`;
 
-  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times,"%ServiceIcon%": ServiceIconMsg, "%Author%": AuthorMsg, "%Message%":msg}
+  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times,"%ServiceIcon%": ServiceIconMsg,"%Server%": ServerMsg, "%Author%": AuthorMsg, "%Message%":msg};
   var html = messageFormat;
   for (var key in formatDictionary) {
-    console.log(formatDictionary[key])
+    console.log(formatDictionary[key]);
     html = html.replace(key,formatDictionary[key]);
   }
 
