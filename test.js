@@ -18,7 +18,8 @@ function connect() {
   ws.onmessage = function(event) {
     console.log("received:");
     console.log(event.data);
-        };
+    
+  };
 
   ws.onclose = function(e) {
     console.log(
