@@ -61,32 +61,32 @@ function sleep(ms) { //sleep function
 function formatAMPM(date){
   var hours = date.getHours();
   var minutes = date.getMinutes();
-  var ampm = hours > 12 ? "pm" : "am";
-  hours = hours % 12
-  minutes = minutes > 10 ? 0 + minutes : minutes;
+  var ampm = hours > 12 ? "pm" : "am"; //give an am or pm suffice depending on the time
+  hours = hours % 12 //since we have the am pm suffix truncate hours to max at 12
+  minutes = minutes > 10 ? 0 + minutes : minutes; //forces minutes to always have 2 digits in it
 
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
 }
 
-function formatTime(date){
+function formatTime(date){ 
   var hours = date.getHours();
   var minutes = date.getMinutes();
-  minutes = minutes > 10 ? 0 + minutes : minutes;
+  minutes = minutes > 10 ? 0 + minutes : minutes; //forces minutes to always have 2 digits in it
   var strTime = hours + ':' + minutes;
   return strTime;
 }
 
 
-async function fadeOut(object){
+async function fadeOut(object){ //adds a fadeout to the text
   var curOpacity = window.getComputedStyle(object).getPropertyValue("opacity");
   var opacityChange = curOpacity/(fadeTransitionTime/fadeCycleTime);
   console.log("Fade out");
 
-  while (object.style.opacity >= 0){
+  while (object.style.opacity >= 0){ //loops until the objects opacity is 0
     curOpacity-=opacityChange
     object.style.opacity = curOpacity;
-    await sleep(fadeCycleTime);
+    await sleep(fadeCycleTime); //delay in between opacity changes
   }
 }
 
