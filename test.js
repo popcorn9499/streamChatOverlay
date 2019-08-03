@@ -92,7 +92,7 @@ async function fadeOut(object){ //adds a fadeout to the text
 }
 
 
-async function newMessage(username,message, ServiceIcon="",Server=""){
+async function newMessage(username,message, ServiceIcon="",Server="",Channel=""){
   var ul = document.getElementById("Chat");
   
   var timeAMPM = formatAMPM(new Date());
@@ -105,10 +105,11 @@ async function newMessage(username,message, ServiceIcon="",Server=""){
   var times = `<span class="timestamp"> ${time} </span>`;
   var ServiceIconMsg = `<span class="ServiceIcon"> ${ServiceIcon} </span>`;
   var ServerMsg = `<span class="Server"> ${Server} </span>`;
+  var ChannelMsg = `<span class="Channel"> ${Channel} </span>`;
   var AuthorMsg = `<span class="username"> ${username} </span>`;
   var msg = `<span class="message-text"> ${message} </span>`;
 
-  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times,"%ServiceIcon%": ServiceIconMsg,"%Server%": ServerMsg, "%Author%": AuthorMsg, "%Message%":msg};
+  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times,"%ServiceIcon%": ServiceIconMsg,"%Server%": ServerMsg,"%Channel%": ChannelMsg, "%Author%": AuthorMsg, "%Message%":msg};
   var html = messageFormat;
   for (var key in formatDictionary) {
     console.log(formatDictionary[key]);
