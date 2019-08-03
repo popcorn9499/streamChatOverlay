@@ -56,4 +56,8 @@ body {
   visibility: hidden
 }
 
+.ServiceIcon {
+  color: rgba(12, 40, 133,0.6);
+}
+
 
