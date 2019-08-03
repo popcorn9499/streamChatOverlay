@@ -98,6 +98,8 @@ async function newMessage(username,message, ServiceIcon=""){
   var timeAMPM = formatAMPM(new Date());
   var time = formatTime(new Date()); 
 
+  console.log(ServiceIcon)
+
   //fill in the formatting spaces we have
   var timeAMPMMsg = `<span class="timestamp"> ${timeAMPM} </span>`
   var times = `<span class="timestamp"> ${time} </span>`
