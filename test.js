@@ -3,6 +3,7 @@ var messageDisapearDelay=15000; //time in ms
 var fadeTransitionTime = 1000; //time in ms
 var fadeCycleTime = 16; //time in ms per "frame"
 
+var messageFormat = "%TimeAMPM% %Author% %Message%"
 
 var WS_URL = "ws://localhost:8000";
 function connect() {
