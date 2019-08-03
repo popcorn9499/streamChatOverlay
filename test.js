@@ -67,6 +67,15 @@ function formatAMPM(date){
   return strTime;
 }
 
+function formatTime(date){
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  minutes = minutes > 10 ? 0 + minutes : minutes;
+  var strTime = hours + ':' + minutes;
+  return strTime;
+}
+
+
 async function fadeOut(object){
   var curOpacity = window.getComputedStyle(object).getPropertyValue("opacity");
   var opacityChange = curOpacity/(fadeTransitionTime/fadeCycleTime);
