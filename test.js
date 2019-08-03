@@ -83,14 +83,17 @@ async function fadeOut(object){
 async function newMessage(username,message){
   var ul = document.getElementById("Chat");
   var li = document.createElement("li");
-  var time = formatAMPM(new Date());
+  var timeAMPM = formatAMPM(new Date());
+  var time = formatTime(new Date());
+
   li.className = "message";
 
-  var timeAMPMMsg = `<span class="timestamp"> ${time} </span>`
+  var timeAMPMMsg = `<span class="timestamp"> ${timeAMPM} </span>`
+  var times = `<span class="timestamp"> ${time} </span>`
   var AuthorMsg = `<span class="username"> ${username} </span>`
   var msg = `<span class="message-text"> ${message} </span>`
 
-  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Author%": AuthorMsg, "%Message%":msg}
+  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times, "%Author%": AuthorMsg, "%Message%":msg}
   var html = messageFormat;
   for (var key in formatDictionary) {
     console.log(formatDictionary[key])
