@@ -80,7 +80,7 @@ async function fadeOut(object){
 }
 
 
-async function addListNode(username,message){
+async function newMessage(username,message){
   var ul = document.getElementById("Chat");
   var li = document.createElement("li");
   var time = formatAMPM(new Date());
@@ -108,13 +108,10 @@ async function addListNode(username,message){
 }
 
 async function main(){
-  for (i = 0; i < 25; i++) { 
-    var message = "BNLAHHH" + i;
-    addListNode("User",message);
+  for (i = 0; i < 7; i++) { 
+    var message = "BNLAHHH aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + i;
+    newMessage("User",message);
     await sleep(1000);
   }
 }
 main()
-
-
-
