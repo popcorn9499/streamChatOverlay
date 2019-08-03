@@ -115,8 +115,10 @@ async function newMessage(username,message){
   ul.appendChild(li);
   console.log("Added")
   await sleep(messageDisapearDelay);
-  await fadeOut(li);
-  await sleep(100);
+  if (fadeTransitionTime != 0){
+    await fadeOut(li);
+    await sleep(100);
+  }
   ul.removeChild(li)
   console.log("Removed")
 }
