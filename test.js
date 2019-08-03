@@ -92,7 +92,7 @@ async function fadeOut(object){ //adds a fadeout to the text
 }
 
 
-async function newMessage(username,message){
+async function newMessage(username,message, ServiceIcon=""){
   var ul = document.getElementById("Chat");
   
   var timeAMPM = formatAMPM(new Date());
@@ -101,10 +101,11 @@ async function newMessage(username,message){
   //fill in the formatting spaces we have
   var timeAMPMMsg = `<span class="timestamp"> ${timeAMPM} </span>`
   var times = `<span class="timestamp"> ${time} </span>`
+  var ServiceIconMsg = `<span class=""> ${ServiceIcon} </span>`
   var AuthorMsg = `<span class="username"> ${username} </span>`
   var msg = `<span class="message-text"> ${message} </span>`
 
-  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times, "%Author%": AuthorMsg, "%Message%":msg}
+  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times,"%ServiceIcon%": ServiceIconMsg, "%Author%": AuthorMsg, "%Message%":msg}
   var html = messageFormat;
   for (var key in formatDictionary) {
     console.log(formatDictionary[key])
