@@ -14,7 +14,7 @@ class overlayHook:
         self.connectionMessageDetails = []
 
         loop = asyncio.get_event_loop()
-        loop.create_task(self.w.websockReaderAdder(self.connectInitialization))
+        loop.create_task(self.w.websocketReaderAdder(self.connectInitialization))
 
 
 
