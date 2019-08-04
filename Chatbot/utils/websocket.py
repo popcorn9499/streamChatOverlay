@@ -8,19 +8,30 @@ class server():
         asyncio.get_event_loop().create_task(self.__asyncInit__())
         self.websocketList = {}
         self.websocketReadCallback = []
-        
+        self.websocketConnectCallback = []
+
+    
+    async def websocketConnectAdder(self,callback):
+        self.websocketConnectAdder.append(callback)
+
+    async def websocketReaderAdder(self,callback):          
+        self.websocketReadCallback.append(callback)
 
     async def __asyncInit__(self):
         start_server = websockets.serve(self.connect, self.ip, self.port)
         await start_server
 
     async def connect(self,websocket, path):
-        asyncio.get_event_loop().create_task(self.read(websocket, path))
-        while True:
-            data = {"Author": "MISTER ME", "Message": "BUT WHY!!", "ServerIcon": "{d}", "Server": "AHH", "Channel": "WHYYY"}
-            out = json.dumps(data)
-            await websocket.send(out)
-            await asyncio.sleep(0.05)
+        loop = asyncio.get_event_loop()
+        loop.create_task(self.read(websocket, path))
+        for callback in self.websocketReadCallback: #handles creating events for when data comes in to handle the data coming in and out
+            loop.create_task(callback(websocket))
+
+        # while True:
+        #     data = {"Author": "MISTER ME", "Message": "BUT WHY!!", "ServerIcon": "{d}", "Server": "AHH", "Channel": "WHYYY"}
+        #     out = json.dumps(data)
+        #     await websocket.send(out)
+        #     await asyncio.sleep(0.05)
 
     async def read(self,websocket, path):
         loop = asyncio.get_event_loop()
