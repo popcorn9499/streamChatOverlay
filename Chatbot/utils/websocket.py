@@ -37,9 +37,13 @@ class server():
         loop = asyncio.get_event_loop()
         while True:
             data = await websocket.recv()
-            data = json.load(data)
-            for callback in self.websocketReadCallback: #handles creating events for when data comes in to handle the data coming in and out
-                loop.create_task(callback(websocket,data))
+            
+            try:
+                data = json.loads(data)
+                for callback in self.websocketReadCallback: #handles creating events for when data comes in to handle the data coming in and out
+                    loop.create_task(callback(websocket,data))
+            except json.decoder.JSONDecodeError:
+                print("error")
 
     async def write(self,websocket, data):
         data = json.dumps(data)
