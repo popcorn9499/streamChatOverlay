@@ -3,7 +3,7 @@ var messageDisapearDelay=5000; //time in ms
 var fadeTransitionTime = 1000; //time in ms (set to 0 to disable)
 var fadeCycleTime = 16; //time in ms per "frame"
 
-var messageFormat = "%TimeAMPM% %ServiceIcon% %Author% %Message%"
+var messageFormat = "%TimeAMPM% %ServiceIcon% %Server%:%Channel% %Author% %Message%"
 
 var WS_URL = "ws://localhost:8000";
 function connect() {
@@ -20,6 +20,8 @@ function connect() {
     console.log(event.data);
     data = JSON.parse(event.data); //this section will change this is temporary setup
     newMessage(data["Author"], data["Message"], ServiceIcon=data["ServerIcon"],Server=data["Server"],Channel=data["Channel"])
+
+    ws.send("Me")
   };
 
   ws.onclose = function(e) {
