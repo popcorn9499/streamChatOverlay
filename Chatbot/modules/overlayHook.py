@@ -29,4 +29,11 @@ class overlayHook:
             self.connectionMessageDetails.append(messageParameters)
 
     async def onMessage(self,message):
-        pass
+        for data in self.connectionMessageDetails:
+            msgParameters = data["messageParameters"]
+            ServiceCheck = message.Service == msgParameters["Service"]
+            ServerCheck = message.Server == msgParameters["Server"]
+            ChannelCheck = message.Channel == msgParameters["Channel"]
+            if ServiceCheck & ServerCheck & ChannelCheck:
+                data = {"Author": msgParameters.Author, "Message": msgParameters.Contents, "ServerIcon": "", "Server": msgParameters.Server, "Channel": msgParameters.Channel}
+                await self.w.write(data["websocket"],data)
