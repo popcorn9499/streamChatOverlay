@@ -26,7 +26,7 @@ class overlayHook:
         # ["ConnectDetails", [{"Service":"SomeService","Server": "SomeServer", "Channel": "SomeChannel"}, ...]]
         # 
         if data[0] == "ConnectDetails":
-            messageParameters = {"Websocket": websocket, "messageParameters": data[1]}
+            messageParameters = {"websocket": websocket, "messageParameters": data[1]}
             self.connectionMessageDetails.append(messageParameters)
 
     async def onMessage(self,message):
