@@ -30,6 +30,7 @@ class overlayHook:
             self.connectionMessageDetails.append(messageParameters)
 
     async def onMessage(self,message):
+        self.l.logger.info("Recieved Message")
         for data in self.connectionMessageDetails:
             msgParameters = data["messageParameters"]
             ServiceCheck = message.Service == msgParameters["Service"]
