@@ -32,12 +32,15 @@ class overlayHook:
     async def onMessage(self,message):
         self.l.logger.info("Recieved Message")
         for data in self.connectionMessageDetails:
-            msgParameters = data["messageParameters"]
-            ServiceCheck = message.Service == msgParameters["Service"]
-            ServerCheck = message.Server == msgParameters["Server"]
-            ChannelCheck = message.Channel == msgParameters["Channel"]
-            if ServiceCheck & ServerCheck & ChannelCheck:
-                data = {"Author": msgParameters.Author, "Message": msgParameters.Contents, "ServerIcon": "", "Server": msgParameters.Server, "Channel": msgParameters.Channel}
-                await self.w.write(data["websocket"],data)
+            websocket = data["websocket"]
+            msgParametersList = data["messageParameters"]
+            for msgParameters in msgParametersList:
+                Message = message.Message
+                ServiceCheck = Message.Service == msgParameters["Service"]
+                ServerCheck = Message.Server == msgParameters["Server"]
+                ChannelCheck = Message.Channel == msgParameters["Channel"]
+                if ServiceCheck & ServerCheck & ChannelCheck:
+                    data = {"Author": Message.Author, "Message": Message.Contents, "ServerIcon": "", "Server": Message.Server, "Channel": Message.Channel}
+                    await self.w.write(websocket,data)
 
 o = overlayHook()
