@@ -12,7 +12,8 @@ function connect() {
   var ws = new WebSocket(WS_URL);
   ws.onopen = function() {
     console.log("connection open");
-    ws.send("hello");
+    var data = ["ConnectDetails", [{"Service": "Discord", "Server": "Popicraft Network", "Channel": "test"}]]
+    ws.send(JSON.stringify(data));
   };
 
   ws.onmessage = function(event) {
