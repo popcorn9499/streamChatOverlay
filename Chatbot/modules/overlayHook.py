@@ -9,4 +9,4 @@ from utils import websocket
 
 class overlayHook:
     def __init__(self):
-        self.w = websocket()
+        self.w = websocket.server()

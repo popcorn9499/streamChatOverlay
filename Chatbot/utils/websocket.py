@@ -1,7 +1,7 @@
 import asyncio
 import websockets
 import json
-class websocket():
+class server():
     def __init__(self, ip, port):
         self.ip = ip
         self.port = port
