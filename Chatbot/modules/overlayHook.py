@@ -39,3 +39,5 @@ class overlayHook:
             if ServiceCheck & ServerCheck & ChannelCheck:
                 data = {"Author": msgParameters.Author, "Message": msgParameters.Contents, "ServerIcon": "", "Server": msgParameters.Server, "Channel": msgParameters.Channel}
                 await self.w.write(data["websocket"],data)
+
+o = overlayHook()
