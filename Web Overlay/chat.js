@@ -76,7 +76,7 @@ function addEmojis(message,emojis){
     for (var key in emojis){
       var url = emojis[key];
       console.log(url);
-      var replace = `<img src="${url}" alt="${key}" height="${emojiHeight}" width="${emojiWidth}">`;
+      var replace = `<img src="${url}" style="vertical-align:middle" alt="${key}" height="${emojiHeight}" width="${emojiWidth}">`;
       fixMessage = replaceAll(fixMessage,key,replace);
     }
     return fixMessage;
