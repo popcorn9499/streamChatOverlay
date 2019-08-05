@@ -15,16 +15,16 @@ function connect() {
   var ws = new WebSocket(WS_URL);
   ws.onopen = function() {
     console.log("connection open");
-    var data = ["ConnectDetails", [{"Service": "Discord", "Server": "Popicraft Network", "Channel": "test"}]]
+    var data = ["ConnectDetails", [{"Service": "Discord", "Server": "Popicraft Network", "Channel": "test", "ServiceIcon": "[D]"},{"Service": "Youtube", "Server": "Youtube", "Channel": "Youtube", "ServiceIcon": "[Y]"},{"Service": "irc", "Server": "irc.chat.twitch.tv", "Channel": "#popcorn9499", "ServiceIcon": "[T]"}]]
     ws.send(JSON.stringify(data));
   };
 
   ws.onmessage = function(event) {
     console.log("received:");
     console.log(event.data);
-    data = JSON.parse(event.data); //this section will change this is temporary setup
-    var fixMessage = addEmojis(data["Message"], data["Emojis"])
-    newMessage(data["Author"], fixMessage, ServiceIcon=data["ServerIcon"],Server=data["Server"],Channel=data["Channel"])
+    var data = JSON.parse(event.data); //this section will change this is temporary setup
+    var fixMessage = addEmojis(data["Message"], data["Emojis"]);
+    newMessage(data["Author"], fixMessage, ServiceIcon=data["ServiceIcon"],Server=data["Server"],Channel=data["Channel"]);
 
     ws.send("Me");
   };
