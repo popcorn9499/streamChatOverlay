@@ -3,6 +3,9 @@ var messageDisapearDelay=5000; //time in ms
 var fadeTransitionTime = 1000; //time in ms (set to 0 to disable)
 var fadeCycleTime = 16; //time in ms per "frame"
 
+var emoteWidth = "64";
+var emoteHeight = "64";
+
 var messageFormat = "%TimeAMPM% %ServiceIcon% %Server%:%Channel% %Author% %Message%"
 
 var WS_URL = "ws://localhost:8000";
@@ -24,7 +27,7 @@ function connect() {
     for (var key in data["Emojis"]){
       var url = data["Emojis"][key];
       console.log(url);
-      var replace = `<img src="${url}" alt="${key}">`;
+      var replace = `<img src="${url}" alt="${key}" height="${emoteHeight}" width="${emoteWidth}">`;
       fixMessage = replaceAll(data["Message"],key,replace);
     }
     newMessage(data["Author"], fixMessage, ServiceIcon=data["ServerIcon"],Server=data["Server"],Channel=data["Channel"])
