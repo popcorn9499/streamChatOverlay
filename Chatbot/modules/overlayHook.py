@@ -9,7 +9,7 @@ from utils import websocket
 
 class overlayHook:
     def __init__(self):
-        self.w = websocket.server("localhost", 8000)
+        self.w = websocket.server("0.0.0.0", 8000)
         self.l = logger.logs("Overlay_Hook")
         config.events.onMessage += self.onMessage
         self.connectionMessageDetails = []
