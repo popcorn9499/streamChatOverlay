@@ -40,7 +40,7 @@ class overlayHook:
                 ServerCheck = Message.Server == msgParameters["Server"]
                 ChannelCheck = Message.Channel == msgParameters["Channel"]
                 if ServiceCheck & ServerCheck & ChannelCheck:
-                    data = {"Author": Message.Author, "Message": Message.Contents, "ServerIcon": "", "Server": Message.Server, "Channel": Message.Channel,"Emojis": Message.Emojis}
+                    data = {"Author": Message.Author, "Message": Message.Contents, "ServiceIcon": msgParameters["ServiceIcon"], "Server": Message.Server, "Channel": Message.Channel,"Emojis": Message.Emojis}
                     try:
                         await self.w.write(websocket,data)
                     except:
