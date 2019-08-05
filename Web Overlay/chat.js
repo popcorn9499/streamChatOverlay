@@ -153,11 +153,11 @@ async function newMessage(username,message, ServiceIcon="",Server="",Channel="")
   console.log("Removed")
 }
 
-async function main(){ //temp code that will be gone when we add the websocket
-  for (i = 0; i < 7; i++) { 
-    var message = "BNLAHHH aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + i;
-    newMessage("User",message);
-    await sleep(1000);
-  }
-}
-main()
+// async function main(){ //temp code that will be gone when we add the websocket
+//   for (i = 0; i < 7; i++) { 
+//     var message = "BNLAHHH aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + i;
+//     newMessage("User",message);
+//     await sleep(1000);
+//   }
+// }
+// main()
