@@ -20,9 +20,16 @@ function connect() {
     console.log("received:");
     console.log(event.data);
     data = JSON.parse(event.data); //this section will change this is temporary setup
-    newMessage(data["Author"], data["Message"], ServiceIcon=data["ServerIcon"],Server=data["Server"],Channel=data["Channel"])
+    var fixMessage=data["Message"];
+    for (var key in data["Emojis"]){
+      var url = data["Emojis"][key];
+      console.log(url);
+      var replace = `<img src="${url}" alt="${key}">`;
+      fixMessage = replaceAll(data["Message"],key,replace);
+    }
+    newMessage(data["Author"], fixMessage, ServiceIcon=data["ServerIcon"],Server=data["Server"],Channel=data["Channel"])
 
-    ws.send("Me")
+    ws.send("Me");
   };
 
   ws.onclose = function(e) {
@@ -47,6 +54,11 @@ function connect() {
 
 // start websocket
 connect();
+
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
 
 
 function sleep(ms) { //sleep function
