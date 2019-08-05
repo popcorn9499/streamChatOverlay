@@ -23,13 +23,7 @@ function connect() {
     console.log("received:");
     console.log(event.data);
     data = JSON.parse(event.data); //this section will change this is temporary setup
-    var fixMessage=data["Message"];
-    for (var key in data["Emojis"]){
-      var url = data["Emojis"][key];
-      console.log(url);
-      var replace = `<img src="${url}" alt="${key}" height="${emoteHeight}" width="${emoteWidth}">`;
-      fixMessage = replaceAll(data["Message"],key,replace);
-    }
+    var fixMessage = addEmojis(data["Message"], data["Emojis"])
     newMessage(data["Author"], fixMessage, ServiceIcon=data["ServerIcon"],Server=data["Server"],Channel=data["Channel"])
 
     ws.send("Me");
@@ -76,6 +70,17 @@ function sleep(ms) { //sleep function
 
 //   }
 // }
+
+function addEmojis(message,emojis){
+  var fixMessage=message;
+    for (var key in emojis){
+      var url = emojis[key];
+      console.log(url);
+      var replace = `<img src="${url}" alt="${key}" height="${emojiHeight}" width="${emojiWidth}">`;
+      fixMessage = replaceAll(fixMessage,key,replace);
+    }
+    return fixMessage;
+}
 
 function formatAMPM(date){
   var hours = date.getHours();
