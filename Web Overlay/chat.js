@@ -3,8 +3,8 @@ var messageDisapearDelay=5000; //time in ms
 var fadeTransitionTime = 1000; //time in ms (set to 0 to disable)
 var fadeCycleTime = 16; //time in ms per "frame"
 
-var emoteWidth = "64";
-var emoteHeight = "64";
+var emojiWidth = "32";
+var emojiHeight = "32";
 
 var messageFormat = "%TimeAMPM% %ServiceIcon% %Server%:%Channel% %Author% %Message%"
 
