@@ -22,7 +22,7 @@ body {
 }
 
 .message {
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.75);
     font-size: 23px;
     font-family: Whitney, sans-serif;
     font-weight: 300;
@@ -45,7 +45,7 @@ body {
 }
 
 .username {
-  color: rgb(155, 89, 182);
+  color: rgb(153, 58, 190);
 }
 
 .message-text {
@@ -57,7 +57,7 @@ body {
 }
 
 .ServiceIcon {
-  color: rgba(12, 40, 133,0.6);
+  color: rgb(33, 84, 192);
 }
 
 .Server {
