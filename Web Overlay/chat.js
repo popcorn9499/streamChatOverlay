@@ -87,7 +87,7 @@ function formatAMPM(date){
   var minutes = date.getMinutes();
   var ampm = hours > 12 ? "pm" : "am"; //give an am or pm suffice depending on the time
   hours = hours % 12 //since we have the am pm suffix truncate hours to max at 12
-  minutes = minutes > 10 ? 0 + minutes : minutes; //forces minutes to always have 2 digits in it
+  minutes = minutes > 10 ? `0${minutes}` : minutes; //forces minutes to always have 2 digits in it
 
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
