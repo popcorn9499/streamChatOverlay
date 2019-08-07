@@ -21,6 +21,12 @@ body {
   overflow: hidden
 }
 
+img.emojis {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+}
+
 .message {
     background-color: rgba(0, 0, 0, 0.75);
     font-size: 23px;
