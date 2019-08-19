@@ -1,4 +1,6 @@
 var messageDisapearDelay=-1; //time in ms. -1 disables
+var fromBottomUp = "bottom"; //"bottom" to have text fill from the bottom. "top" to have text fill from the top
+
 
 var fadeTransitionTime = 1000; //time in ms (set to 0 to disable)
 var fadeCycleTime = 16; //time in ms per "frame"
@@ -155,6 +157,14 @@ async function newMessage(username,message, ServiceIcon="",Server="",Channel="")
     console.log("Removed")
   }
 }
+
+function bottomTopListAlignment() {
+  if (fromBottomUp == "bottom"){
+    var element = document.getElementById("ChatControls");
+    element.classList.add("messageOrder");
+  }
+}
+bottomTopListAlignment()
 
 // async function main(){ //temp code that will be gone when we add the websocket
 //   for (i = 0; i < 7; i++) { 

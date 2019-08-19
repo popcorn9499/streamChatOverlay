@@ -27,6 +27,15 @@ img.emojis {
   object-fit: contain;
 }
 
+.messageOrder {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  bottom: 0;
+}
+
 .message {
     background-color: rgba(0, 0, 0, 0.75);
     font-size: 23px;
