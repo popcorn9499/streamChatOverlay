@@ -1,4 +1,4 @@
-var messageDisapearDelay=5000; //time in ms
+var messageDisapearDelay=-1; //time in ms. -1 disables
 
 var fadeTransitionTime = 1000; //time in ms (set to 0 to disable)
 var fadeCycleTime = 16; //time in ms per "frame"
@@ -145,13 +145,15 @@ async function newMessage(username,message, ServiceIcon="",Server="",Channel="")
   li.innerHTML = html;
   ul.appendChild(li);
   console.log("Added")
-  await sleep(messageDisapearDelay); //delay in between message on screen and fadeout and removal
-  if (fadeTransitionTime != 0){ //fade out section with 0 diabling it
-    await fadeOut(li);
-    await sleep(100);
+  if (messageDisapearDelay > -1){
+    await sleep(messageDisapearDelay); //delay in between message on screen and fadeout and removal
+    if (fadeTransitionTime != 0){ //fade out section with 0 diabling it
+      await fadeOut(li);
+      await sleep(100);
+    }
+    ul.removeChild(li)
+    console.log("Removed")
   }
-  ul.removeChild(li)
-  console.log("Removed")
 }
 
 // async function main(){ //temp code that will be gone when we add the websocket
