@@ -55,9 +55,17 @@ function connect() {
 connect();
 
 
+function escapeRegExp(str) {
+  return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
 function replaceAll(str, find, replace) {
-  //return str.replace(new RegExp(find, 'g'), replace);
-  return str.replace(find, replace);
+  // try{
+  //   return str.replace(new RegExp(find, 'g'), replace);
+  // } catch {
+  //   return str.replace(find, replace);
+  // }
+  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 }
 
 
