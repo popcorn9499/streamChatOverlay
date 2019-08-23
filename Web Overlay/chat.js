@@ -97,7 +97,7 @@ function addEmojis(message,emojis){
   console.log("preMessage: " + message)
   console.log("emojis: " +  JSON.stringify(emojis));
   var newEmojis = {};
-  for (var key in emojis){
+  for (var key in emojis){ //add a random id at the end of each emote in the message to make it unique to urls and crap
     var randomStr = makeid(5);
     var newEmote = "<"+key+"-"+randomStr+">";
     fixMessage = replaceAll(fixMessage,key,newEmote);
