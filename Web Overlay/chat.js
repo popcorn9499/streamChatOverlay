@@ -82,15 +82,37 @@ function sleep(ms) { //sleep function
 //   }
 // }
 
+function makeid(length) {
+  var result           = '';
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+     result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
 function addEmojis(message,emojis){
   var fixMessage=message;
-    for (var key in emojis){
-      var url = emojis[key];
-      console.log(url);
-      var replace = `<img class="emojis" src="${url}" style="vertical-align:middle" alt="${key}">`;
-      fixMessage = replaceAll(fixMessage,key,replace);
-    }
-    return fixMessage;
+  console.log("preMessage: " + message)
+  console.log("emojis: " +  JSON.stringify(emojis));
+  var newEmojis = {};
+  for (var key in emojis){
+    var randomStr = makeid(5);
+    var newEmote = "<"+key+"-"+randomStr+">";
+    fixMessage = replaceAll(fixMessage,key,newEmote);
+    newEmojis[newEmote] = emojis[key];
+  }
+  console.log("preMessage: " + fixMessage);
+  console.log("newEmojis: " +  JSON.stringify(newEmojis));
+  for (var key in newEmojis){
+    var url = newEmojis[key];
+    console.log(url);
+    var replace = `<img class="emojis" src="${url}" style="vertical-align:middle" alt="${key}">`;
+    fixMessage = replaceAll(fixMessage,key,replace);
+  }
+  console.log("Message: " + fixMessage)
+  return fixMessage;
 }
 
 function formatAMPM(date){
