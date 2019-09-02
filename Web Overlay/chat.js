@@ -26,7 +26,8 @@ function connect() {
     console.log(event.data);
     var data = JSON.parse(event.data); //this section will change this is temporary setup
     var fixMessage = addEmojis(data["Message"], data["Emojis"]);
-    newMessage(data["Author"], fixMessage, ServiceIcon=data["ServiceIcon"],Server=data["Server"],Channel=data["Channel"]);
+    var badges = formatBadges(data["Badges"])
+    newMessage(data["Author"], fixMessage, ServiceIcon=data["ServiceIcon"],Server=data["Server"],Channel=data["Channel"],Badges=badges);
 
     ws.send("Me");
   };
@@ -115,6 +116,16 @@ function addEmojis(message,emojis){
   return fixMessage;
 }
 
+function formatBadges(badgeDic){
+  var data = "";
+  for (var key in badgeDic){
+    console.log(key)
+    var url = badgeDic[key];
+    var data = data + `<img class="emojis" src="${url}" style="vertical-align:middle" alt="${key}">`;
+  }
+  return data;
+}
+
 function formatAMPM(date){
   var hours = date.getHours();
   var minutes = date.getMinutes();
@@ -148,7 +159,7 @@ async function fadeOut(object){ //adds a fadeout to the text
 }
 
 
-async function newMessage(username,message, ServiceIcon="",Server="",Channel=""){
+async function newMessage(username,message, ServiceIcon="",Server="",Channel="", Badges=""){
   var ul = document.getElementById("Chat");
   
   var timeAMPM = formatAMPM(new Date());
@@ -164,8 +175,9 @@ async function newMessage(username,message, ServiceIcon="",Server="",Channel="")
   var ChannelMsg = `<span class="Channel"> ${Channel} </span>`;
   var AuthorMsg = `<span class="username"> ${username} </span>`;
   var msg = `<span class="message-text"> ${message} </span>`;
+  var BadgeMsg = `<span class="Badge"> ${Badges} </span>`;
 
-  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times,"%ServiceIcon%": ServiceIconMsg,"%Server%": ServerMsg,"%Channel%": ChannelMsg, "%Author%": AuthorMsg, "%Message%":msg};
+  var formatDictionary = {"%TimeAMPM%": timeAMPMMsg, "%Time%": times,"%ServiceIcon%": ServiceIconMsg,"%Server%": ServerMsg,"%Channel%": ChannelMsg, "%Author%": AuthorMsg, "%Message%":msg, "%Badges%": BadgeMsg};
   var html = messageFormat;
   for (var key in formatDictionary) {
     console.log(formatDictionary[key]);

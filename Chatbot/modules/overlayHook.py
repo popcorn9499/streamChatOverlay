@@ -45,7 +45,7 @@ class overlayHook:
                         serviceIcon = msgParameters["ServiceIcon"]
                     except:
                         pass
-                    data = {"Author": Message.Author, "Message": Message.Contents, "ServiceIcon": serviceIcon, "Server": Message.Server, "Channel": Message.Channel,"Emojis": Message.Emojis}
+                    data = {"Author": Message.Author, "Message": Message.Contents, "ServiceIcon": serviceIcon, "Server": Message.Server, "Channel": Message.Channel,"Emojis": Message.Emojis, "Badges": Message.Badges}
                     try:
                         await self.w.write(websocket,data)
                     except:
