@@ -1,6 +1,6 @@
 var messageDisapearDelay=15000 //time in ms. -1 disables
 var fromBottomUp = "bottom"; //"bottom" to have text fill from the bottom. "top" to have text fill from the top
-
+var scrollable = true;
 
 var fadeTransitionTime = 1000; //time in ms (set to 0 to disable)
 var fadeCycleTime = 16; //time in ms per "frame"
@@ -10,6 +10,8 @@ var emojiHeight = "64";
 var messageFormat = "%Badges% %ServiceIcon% %Author% %Message%"
 
 var WS_URL = "ws://192.168.1.119:8000";
+var scroll = document.getElementById("Scrollable");
+
 function connect() {
   console.log("attempting connection");
 
@@ -159,6 +161,7 @@ async function fadeOut(object){ //adds a fadeout to the text
 
 
 async function newMessage(username,message, ServiceIcon="",Server="",Channel="", Badges=""){
+  
   var ul = document.getElementById("Chat");
   
   var timeAMPM = formatAMPM(new Date());
@@ -183,10 +186,19 @@ async function newMessage(username,message, ServiceIcon="",Server="",Channel="",
     html = html.replace(key,formatDictionary[key]);
   }
 
+  var prevScrollHeight= scroll.scrollHeight - scroll.clientHeight;
+  var prevScrollTop = scroll.scrollTop;
+
+
   var li = document.createElement("li");
   li.className = "message";
   li.innerHTML = html;
   ul.appendChild(li);
+  
+  if (scrollable && (fromBottomUp == "bottom") && (prevScrollHeight == prevScrollTop)) { //handles scrolling down if we choose to go downward
+    scroll.scrollTop = scroll.scrollHeight;
+  }
+
   console.log("Added")
   if (messageDisapearDelay > -1){
     await sleep(messageDisapearDelay); //delay in between message on screen and fadeout and removal
@@ -205,7 +217,19 @@ function bottomTopListAlignment() {
     element.classList.add("messageOrder");
   }
 }
+
+function setScrollableList(){
+  if (scrollable){
+    var element = document.getElementById("Scrollable");
+    element.classList.add("scrollable");
+  }
+}
+
+
 bottomTopListAlignment()
+setScrollableList()
+
+
 
 // async function main(){ //temp code that will be gone when we add the websocket
 //   for (i = 0; i < 15; i++) { 
