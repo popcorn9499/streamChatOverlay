@@ -1,23 +1,22 @@
-var messageDisapearDelay=-1; //time in ms. -1 disables
+var messageDisapearDelay=15000 //time in ms. -1 disables
 var fromBottomUp = "bottom"; //"bottom" to have text fill from the bottom. "top" to have text fill from the top
 
 
 var fadeTransitionTime = 1000; //time in ms (set to 0 to disable)
 var fadeCycleTime = 16; //time in ms per "frame"
+var emojiWidth = "64";
+var emojiHeight = "64";
 
-var emojiWidth = "32";
-var emojiHeight = "32";
+var messageFormat = "%Badges% %ServiceIcon% %Author% %Message%"
 
-var messageFormat = "%TimeAMPM% %ServiceIcon% %Server%:%Channel% %Author% %Message%"
-
-var WS_URL = "ws://localhost:8000";
+var WS_URL = "ws://192.168.1.119:8000";
 function connect() {
   console.log("attempting connection");
 
   var ws = new WebSocket(WS_URL);
   ws.onopen = function() {
     console.log("connection open");
-    var data = ["ConnectDetails", [{"Service": "Discord", "Server": "Popicraft Network", "Channel": "test", "ServiceIcon": "[D]"},{"Service": "Youtube", "Server": "Youtube", "Channel": "Youtube", "ServiceIcon": "[Y]"},{"Service": "irc", "Server": "irc.chat.twitch.tv", "Channel": "#popcorn9499", "ServiceIcon": "[T]"}]]
+    var data = ["ConnectDetails", [{"Service": "Discord", "Server": "Popicraft Network", "Channel": "stream-chat", "ServiceIcon": "[D]"},{"Service": "Youtube", "Server": "Youtube", "Channel": "Youtube", "ServiceIcon": "[Y]"},{"Service": "irc", "Server": "irc.chat.twitch.tv", "Channel": "#popcorn9499", "ServiceIcon": "[T]"}]]
     ws.send(JSON.stringify(data));
   };
 
@@ -209,10 +208,12 @@ function bottomTopListAlignment() {
 bottomTopListAlignment()
 
 // async function main(){ //temp code that will be gone when we add the websocket
-//   for (i = 0; i < 7; i++) { 
-//     var message = "BNLAHHH aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + i;
+//   for (i = 0; i < 15; i++) { 
+//     var message = "BNLAHHH " + i;
 //     newMessage("User",message);
 //     await sleep(1000);
 //   }
 // }
+
+
 // main()

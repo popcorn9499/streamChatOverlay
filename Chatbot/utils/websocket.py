@@ -44,6 +44,10 @@ class server():
                     loop.create_task(callback(websocket,data))
             except json.decoder.JSONDecodeError:
                 print("error")
+            except websockets.exceptions.ConnectionClosed:
+                #add connection closed prompts
+
+                break
 
     async def write(self,websocket, data):
         data = json.dumps(data)

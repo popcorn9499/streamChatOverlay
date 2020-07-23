@@ -38,23 +38,24 @@ img.emojis {
 
 .message {
     background-color: rgba(0, 0, 0, 0.75);
-    font-size: 23px;
+    font-size: 50px; /* was 23px */
     font-family: Whitney, sans-serif;
     font-weight: 300;
     left: 0px;
     top: 0px;
     /*width: 577px;
     height: 162px;*/
-    padding: 5px 5px;
+    padding: 10px 10px; /* was 5px both ways */
     word-break: break-word;
-    border-radius: 10px 10px;
+    border-radius: 25px 25px; /* was 10px both ways */
     color: rgba(255, 255, 255, 0.6);
     text-align: left;
-    margin: 3px 0;
+    margin: 5px 0;
+    float: up;
 }
 
 .timestamp {
-  font-size: 20px;
+  font-size: 42px; /* was 20px */
   color: rgba(255, 255, 255,0.6);
   
 }
