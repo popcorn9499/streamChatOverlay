@@ -1,1 +1,4 @@
 streamChatOverlay
+
+Requirements
+- Websockets
