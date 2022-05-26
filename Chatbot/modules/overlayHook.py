@@ -14,10 +14,11 @@ class overlayHook:
         config.events.onMessage += self.onMessage
         self.connectionMessageDetails = []
 
-        loop = asyncio.get_event_loop()
-        loop.create_task(self.w.websocketReaderAdder(self.connectInitialization))
+        config.events.onStartup += self.startup
 
 
+    async def startup(self):
+        asyncio.create_task(self.w.websocketReaderAdder(self.connectInitialization))
 
     async def connectInitialization(self,websocket,data):
         # Websocket connection requirments
